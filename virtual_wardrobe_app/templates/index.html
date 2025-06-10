@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Wardrobe</title>
+</head>
+<body>
+    <h1>Virtual Wardrobe</h1>
+    <form action="{{ url_for('upload_files') }}" method="POST" enctype="multipart/form-data">
+        <label for="person_image">Your Image:</label><br>
+        <input type="file" id="person_image" name="person_image" accept="image/*" required><br><br>
+
+        <label for="top_image">Top Wear:</label><br>
+        <input type="file" id="top_image" name="top_image" accept="image/*" required><br><br>
+
+        <label for="bottom_image">Bottom Wear:</label><br>
+        <input type="file" id="bottom_image" name="bottom_image" accept="image/*" required><br><br>
+
+        <input type="submit" value="Generate Outfit">
+    </form>
+
+    <div id="result_image_container">
+        {% if generated_image_name %}
+            <h3>Generated Outfit:</h3>
+            <img src="{{ url_for('serve_upload', filename=generated_image_name) }}" alt="Generated Outfit" style="max-width: 500px;">
+        {% endif %}
+    </div>
+</body>
+</html>
